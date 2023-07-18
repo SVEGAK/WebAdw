@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Разместить объявление {% endblock title %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/fontello.css">
-  <title>Advertisement-post</title>
-</head>
+{% block content %}
 
 <body>
 
-
   <ul class="nav nav-pills sticky-top bg-white nav-fill">
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{% url 'main-page' %}">
         <span style="font-weight: bold;">Главная</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="top-sellers.html"><span style="font-weight: bold;">Топ продавцов</span>
+      <a class="nav-link" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="advertisement-post.html">
+      <a class="nav-link active" aria-current="page" href= "{% url 'advertisement-post' %}">
         <span style="font-weight: bold;">Разместить объявление</span>
       </a>
     </li>
@@ -107,6 +99,6 @@
       </div>
     </form>
   </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
+  {% endblock content %}
 </body>
 </html>
