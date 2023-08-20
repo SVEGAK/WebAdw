@@ -1,33 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Профиль {% endblock title %}
-
+{% block title %}
+Профиль
+{% endblock title %}
 {% block content %}
 
-
-<body>
   <ul class="nav nav-pills sticky-top bg-white nav-fill">
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'main-page' %}">
+      <a class="nav-link " href="{% url 'main-page' %}">
         <span style="font-weight: bold;">Главная</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="top-sellers.html"><span style="font-weight: bold;">Топ продавцов</span>
+      <a class="nav-link" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'advertisement-post' %}">
+      <a class="nav-link " href="{% url 'adv-post' %}">
         <span style="font-weight: bold;">Разместить объявление</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'register' %}">
+      <a class="nav-link" href="{% url 'register' %}" >
         <span style="font-weight: bold;">Регистрация</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'login' %}">
+      <a class="nav-link " href="{% url 'login' %}">
         <span style="font-weight: bold;">Войти</span>
       </a>
     </li>
@@ -47,6 +46,5 @@
     <span class="badge bg-primary">Сейчас вы находитесь на сайте под ником "username".</span>
   </div>
 </div>
+<script src="js/bootstrap.bundle.min.js"></script>
 {% endblock content %}
-</body>
-</html>
