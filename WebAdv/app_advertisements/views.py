@@ -3,21 +3,20 @@ from django.http import HttpResponse
 from .models import Advertisement
 from .forms import AdvertisementForm
 from django.urls import reverse
-from django.forms import modelformset_factory
 
 def index(request):
     advertisements = Advertisement.objects.all()
     context = {'advertisements': advertisements}
-    return render(request, 'index.html', context)
+    return render(request, 'app_advertisements/index.html', context)
 
 def top_sellers(request):
-    return render(request, 'top-sellers.html')
+    return render(request, 'app_advertisements/top-sellers.html')
 def login(request):
-    return render(request, 'login.html')
+    return render(request, 'app_auth/login.html')
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'app_auth/profile.html')
 def register(request):
-    return render(request, 'register.html')
+    return render(request, 'app_auth/register.html')
 def advertisement_post(request):
     if request.method == "POST":
         form = AdvertisementForm(request.POST, request.FILES)
