@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import Advertisement
 from .forms import AdvertisementForm
 from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     advertisements = Advertisement.objects.all()
@@ -17,6 +19,7 @@ def profile(request):
     return render(request, 'app_auth/profile.html')
 def register(request):
     return render(request, 'app_auth/register.html')
+@login_required(login_url=reverse_lazy('login'))
 def advertisement_post(request):
     if request.method == "POST":
         form = AdvertisementForm(request.POST, request.FILES)
@@ -29,4 +32,4 @@ def advertisement_post(request):
     else:
         form = AdvertisementForm()
     context = {'form': form}
-    return render(request, 'advertisement-post.html', context)
+    return render(request, 'app_advertisements/advertisement-post.html', context)

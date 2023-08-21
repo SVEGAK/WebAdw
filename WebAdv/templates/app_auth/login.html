@@ -38,25 +38,31 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{% url 'logout' %}">
         <span style="font-weight: bold;">Выйти</span>
       </a>
     </li>
   </ul>
   <div class="container">
-  <div class="row">
+    {% if error %}
+    <div class="col-sm-4 offset-4 w-25">
+      <div class="form-label bg-warning" style='margin: 10px 0px;'>
+        {{error}}
+      </div>
+    {% endif%}
+    <div class="row">
     <div class="col-8" style="margin: 50px;">
       <div class="display-2">
         <span class="badge bg-primary">Страница авторизации пользователя</span>
       </div>
     </div>
   </div>
-    <form method="post">
+    <form method="post">{% csrf_token %}
       <div class="row mb-3">
         <div class="col">
           <label class="col-sm-4 col-form-label offset-4">Username</label>
           <div class="col-sm-4 offset-4 w-25">
-            <input type="text" class="form-control form-control-lg">
+            <input name='username' id='username' type="text" class="form-control form-control-lg">
           </div>
         </div>
       </div>
@@ -64,7 +70,7 @@
         <div class="col">
           <label class="col-sm-4 col-form-label offset-4">Password</label>
           <div class="col-sm-4 offset-4 w-25">
-            <input type="password" class="form-control form-control-lg">
+            <input name='password' id='password' type="password" class="form-control form-control-lg">
           </div>
         </div>
       </div>
