@@ -52,7 +52,6 @@
   <div class="container">
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-
       <div class="row mb-3 offset-sm-4">
         <div class="col-6">
           {{ form.as_p }}
@@ -67,4 +66,5 @@
       </div>
     </form>
   </div>
+
 {% endblock content %}

@@ -1,5 +1,5 @@
 from django.urls import path 
-from .views import index, top_sellers,advertisement_post, login, profile, register, advertisment
+from .views import index, top_sellers,advertisement_post, login, profile, register
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
@@ -9,7 +9,7 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('profile/',  profile, name='profile'),
     path('register/',  register, name='register'),
-    path('advertisment/', advertisment, name='advertisment'),
+    # path('advertisment/', advertisment, name='advertisment'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

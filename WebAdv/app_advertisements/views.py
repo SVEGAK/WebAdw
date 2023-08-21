@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Advertisement
 from .forms import AdvertisementForm
 from django.urls import reverse
+from django.forms import modelformset_factory
 
 def index(request):
     advertisements = Advertisement.objects.all()
@@ -17,14 +18,11 @@ def profile(request):
     return render(request, 'profile.html')
 def register(request):
     return render(request, 'register.html')
-def advertisment(request):
-    return render(request, 'advertisement.html')
-
 def advertisement_post(request):
     if request.method == "POST":
         form = AdvertisementForm(request.POST, request.FILES)
         if form.is_valid():
-            advertisement = Advertisement(**form.cleaned_data)
+            advertisement = form.save(commit=False)
             advertisement.user = request.user
             advertisement.save()
             url = reverse('main-page')
