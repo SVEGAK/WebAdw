@@ -7,6 +7,7 @@
 
 
 {% block content %}
+{%if user.is_authenticated%}
   <ul class="nav nav-pills sticky-top bg-white nav-fill">
     <li class="nav-item">
       <a class="nav-link " href="{% url 'main-page' %}">
@@ -23,16 +24,6 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="{% url 'register' %}" >
-        <span style="font-weight: bold;">Регистрация</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link " href="{% url 'login' %}">
-        <span style="font-weight: bold;">Войти</span>
-      </a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href="{% url 'profile' %}">
         <span style="font-weight: bold;">Профиль</span>
       </a>
@@ -43,6 +34,29 @@
       </a>
     </li>
   </ul>
+{%else%}
+  <ul class="nav nav-pills sticky-top bg-white nav-fill">
+    <li class="nav-item">
+      <a class="nav-link " href="{% url 'main-page' %}">
+        <span style="font-weight: bold;">Главная</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'register' %}" >
+        <span style="font-weight: bold;">Регистрация</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="{% url 'login' %}">
+        <span style="font-weight: bold;">Войти</span>
+      </a>
+    </li>
+  </ul>
+{%endif%}
   <div class="container">
   <div class="row">
     <div class="col" style="margin: 50px;">
@@ -51,54 +65,18 @@
       </div>
     </div>
   </div>
-    <form method="post">
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Username</label>
-          <div class="col-sm-4 offset-4 w-25">
-            <input type="text" class="form-control form-control-lg">
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Name</label>
-          <div class="col-sm-4 offset-4 w-25">
-            <input type="text" class="form-control form-control-lg">
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Surname</label>
-          <div class="col-sm-4 offset-4 w-25">
-            <input type="text" class="form-control form-control-lg">
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Password</label>
-          <div class="col-sm-4 offset-4 w-25">
-            <input type="password" class="form-control form-control-lg">
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Password confirmation</label>
-          <div class="col-sm-4 offset-4 w-25">
-            <input type="password" class="form-control form-control-lg">
-            <div class="form-label bg-warning" style="margin: 10px 0px;">Ошибка (если будет)</div>
-          </div>
-        </div>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row mb-3 offset-sm-4">
+      <div class="col-6">
+        {{ form.as_p }}
       </div>
       <div class="row mb-3 offset-sm-5">
         <div class="col">
           <button type="submit" class="btn btn-success">Принять</button>
         </div>
       </div>
-    </form>
+  </form>
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
 {% endblock content %}
